@@ -1,0 +1,8 @@
+# Ignore node_modules em qualquer subpasta
+**/node_modules
+
+# Outras coisas comuns a ignorar
+.env
+.DS_Store
+dist
+build
