@@ -43,7 +43,7 @@ mongoose.connect(process.env.MONGO_URI)
   const upload = multer({ storage });
 
 
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -73,7 +73,9 @@ app.use(session({
   cookie: {
     secure: true,
     httpOnly: true,
-    sameSite: 'none'
+    sameSite: 'none',
+    maxAge: 1000 * 60 * 60 * 24
+
   }
 }))
 
