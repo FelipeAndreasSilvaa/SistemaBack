@@ -40,9 +40,15 @@ mongoose.connect(process.env.MONGO_URI, {
   
   const upload = multer({ storage });
 
-app.use(cors({ origin: "http://localhost:3000",    
-    credentials: true, // Isso é ESSENCIAL
-})); // Ajuste a porta conforme necessário
+  app.use(cors({
+    origin: [
+      "http://localhost:3000",
+      "https://ecommerce-shop-git-main-felipeandreassilvaas-projects.vercel.app",
+      "ecommerce-shop-nmsyt39dk-felipeandreassilvaas-projects.vercel.app"
+    ],
+    credentials: true,
+  }));
+  
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(session({
