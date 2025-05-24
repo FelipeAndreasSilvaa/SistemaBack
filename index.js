@@ -58,6 +58,7 @@ mongoose.connect(process.env.MONGO_URI, {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }));
+  
 
   
 app.use(express.json())
@@ -71,12 +72,13 @@ app.use(session({
     ttl: 60 * 60 * 24
   }),
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
+    secure: process.env.NODE_ENV === 'production', // false local, true prod
     httpOnly: true,
-    sameSite: 'none',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: 1000 * 60 * 60 * 24
   }
 }));
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
@@ -147,8 +149,6 @@ app.post("/Add_Produto", upload.single("imagem"), async (req, res) => {
   }
 });
 
-
-
 app.get('/Get_Produto', async (req, res) => {
   console.log("📥 [Get_Produto] Requisição recebida");
   try {
@@ -160,7 +160,6 @@ app.get('/Get_Produto', async (req, res) => {
     res.status(500).json({ message: "Erro ao buscar o produto", error });
   }
 });
-
 
 app.get('/Get_Produto/:id', async (req, res) => {
   const { id } = req.params;
@@ -178,7 +177,6 @@ app.get('/Get_Produto/:id', async (req, res) => {
     res.status(500).json({ message: 'Erro ao buscar produto' });
   }
 });
-
 
 app.get('/produtos', async (req, res) => {
   try {
