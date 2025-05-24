@@ -56,10 +56,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false, // melhor segurança
     cookie: {
-      secure: true, // ✅ HTTPS exige isso
+      secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
-      sameSite: 'none' // ✅ permite envio cross-site
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
     }
+    
 }))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
