@@ -58,7 +58,7 @@ app.use(session({
     cookie: {
       secure: false, // true apenas em produção com HTTPS
       httpOnly: true,
-      sameSite: 'lax'
+      sameSite: 'none'
     }
 }))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
