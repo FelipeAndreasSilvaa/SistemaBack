@@ -195,6 +195,8 @@ app.get('/produtos', async (req, res) => {
 });
 
 app.get('/session', (req, res) => {
+  console.log("[Session] Session ID:", req.sessionID);
+  console.log("[Session] Session data:", req.session);
   console.log("[Session] Verificando sessão atual");
   if (req.session.user) {
     console.log("[Session] Sessão ativa:", req.session.user);
