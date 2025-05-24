@@ -194,6 +194,12 @@ app.get('/produtos', async (req, res) => {
   }
 });
 
+app.use((req, res, next) => {
+  console.log('[Cookies recebidos]', req.headers.cookie);
+  next();
+});
+
+
 app.get('/session', (req, res) => {
   console.log("[Session] Session ID:", req.sessionID);
   console.log("[Session] Session data:", req.session);
