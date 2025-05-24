@@ -63,7 +63,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(session({
-  secret: 'seuSegredoAqui',
+  secret: process.env.SESSION_SECRET || 'segredoForteAqui',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
