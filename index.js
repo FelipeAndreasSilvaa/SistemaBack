@@ -18,14 +18,14 @@ const app = express()
 const port = process.env.PORT || 3001;
 
 
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }).then(() => {
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
     console.log("MongoDB conectado");
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.error("Erro ao conectar ao MongoDB:", err);
   });
+
   
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
