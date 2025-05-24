@@ -66,12 +66,17 @@ app.use(session({
   secret: 'seuSegredoAqui',
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    collectionName: 'sessions'
+  }),
   cookie: {
-    secure: true, // OBRIGATÓRIO em produção com SameSite 'none'
+    secure: true,
     httpOnly: true,
-    sameSite: 'none',
+    sameSite: 'none'
   }
 }))
+
 
 
 
