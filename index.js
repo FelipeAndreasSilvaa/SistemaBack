@@ -79,7 +79,8 @@ app.use(session({
   cookie: {
     secure: true, // OBRIGATÓRIO em produção com SameSite 'none'
     httpOnly: true,
-    sameSite: 'none'
+    sameSite: 'none',
+    domain: '.vercel.app' // ou o domínio exato do seu frontend
   }
 }))
 
