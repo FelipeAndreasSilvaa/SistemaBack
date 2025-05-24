@@ -66,17 +66,13 @@ app.use(session({
   secret: 'seuSegredoAqui',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
-    ttl: 60 * 60 * 24
-  }),
   cookie: {
-    secure: true, // obrigatório para https
+    secure: process.env.NODE_ENV === 'production', // true em produção
     httpOnly: true,
-    sameSite: 'none', // necessário entre domínios diferentes
-    maxAge: 1000 * 60 * 60 * 24 // 1 dia
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
   }
-}));
+}))
+
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
