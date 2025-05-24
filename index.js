@@ -62,16 +62,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-// app.use(session({
-//   secret: 'seuSegredoAqui',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: {
-//     secure: process.env.NODE_ENV === 'production', // true em produção
-//     httpOnly: true,
-//     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
-//   }
-// }))
 app.use(session({
   secret: 'seuSegredoAqui',
   resave: false,
@@ -80,7 +70,6 @@ app.use(session({
     secure: true, // OBRIGATÓRIO em produção com SameSite 'none'
     httpOnly: true,
     sameSite: 'none',
-    domain: '.vercel.app' // ou o domínio exato do seu frontend
   }
 }))
 
