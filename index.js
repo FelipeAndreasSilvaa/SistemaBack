@@ -56,9 +56,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false, // melhor segurança
     cookie: {
-      secure: false, // true apenas em produção com HTTPS
+      secure: true, // ✅ HTTPS exige isso
       httpOnly: true,
-      sameSite: 'none'
+      sameSite: 'none' // ✅ permite envio cross-site
     }
 }))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
