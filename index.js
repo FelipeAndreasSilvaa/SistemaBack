@@ -106,7 +106,6 @@ app.get('/Get_Produto', async (req, res) => {
   }
 });
 
-
 app.get('/Get_Produto/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -120,20 +119,6 @@ app.get('/Get_Produto/:id', async (req, res) => {
     res.status(500).json({ message: 'Erro ao buscar produto' });
   }
 });
-
-// app.get('/produtos', async (req, res) => {
-//   try {
-//     const { categoria } = req.query;
-
-//     const filtro = categoria ? { categoria } : {};
-//     const produtos = await ProductModel.find(filtro);
-
-//     res.status(200).json(produtos);
-//   } catch (error) {
-//     console.error("Erro ao buscar produtos por categoria:", error);
-//     res.status(500).json({ message: "Erro ao buscar produtos", error });
-//   }
-// });
 
 app.get('/produtos', async (req, res) => {
   try {
@@ -150,9 +135,6 @@ app.get('/produtos', async (req, res) => {
     res.status(500).json({ message: "Erro ao buscar produtos", error });
   }
 });
-
-
-
 
 app.get('/session', (req, res) => {
   if (req.session.user) {
