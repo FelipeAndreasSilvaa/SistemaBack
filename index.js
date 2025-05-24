@@ -48,11 +48,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
   origin: function (origin, callback) {
-    const allowed = [
-      "https://ecommerce-shop-git-main-felipeandreassilvaas-projects.vercel.app",
-      "https://ecommerce-shop-nmsyt39dk-felipeandreassilvaas-projects.vercel.app",
-      "https://ecommerce-shop-taupe.vercel.app/"
-    ];
+    const allowed = ["https://ecommerce-shop-taupe.vercel.app/"];
     if (!origin || allowed.includes(origin)) {
       callback(null, true);
     } else {
@@ -65,7 +61,7 @@ app.use(cors({
 app.use(session({
   secret: 'seuSegredoAqui',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_URI,
     ttl: 60 * 60 * 24
