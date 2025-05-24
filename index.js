@@ -43,7 +43,8 @@ mongoose.connect(process.env.MONGO_URI)
   const upload = multer({ storage });
 
 
-  
+app.set("trust proxy", 1);
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
