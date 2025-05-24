@@ -47,7 +47,7 @@ mongoose.connect(process.env.MONGO_URI, {
       const allowed = [
         "http://localhost:3000",
         "https://ecommerce-shop-git-main-felipeandreassilvaas-projects.vercel.app",
-        "ecommerce-shop-nmsyt39dk-felipeandreassilvaas-projects.vercel.app"
+        "https://ecommerce-shop-nmsyt39dk-felipeandreassilvaas-projects.vercel.app"
       ];
       if (!origin || allowed.includes(origin)) {
         callback(null, true);
