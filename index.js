@@ -72,12 +72,13 @@ app.use(session({
     ttl: 60 * 60 * 24
   }),
   cookie: {
-    secure: process.env.NODE_ENV === 'production', // false local, true prod
+    secure: true, // obrigatório para https
     httpOnly: true,
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    maxAge: 1000 * 60 * 60 * 24
+    sameSite: 'none', // necessário entre domínios diferentes
+    maxAge: 1000 * 60 * 60 * 24 // 1 dia
   }
 }));
+
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
