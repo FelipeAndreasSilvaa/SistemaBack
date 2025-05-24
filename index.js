@@ -194,19 +194,14 @@ app.get('/produtos', async (req, res) => {
   }
 });
 
-app.use((req, res, next) => {
-  console.log('[Cookies recebidos]', req.headers.cookie);
-  next();
-});
-
-
 app.get('/session', (req, res) => {
   console.log("[Session] Session ID:", req.sessionID);
   console.log("[Session] Session data:", req.session);
   console.log("[Session] Verificando sessão atual");
+
   if (req.session.user) {
     console.log("[Session] Sessão ativa:", req.session.user);
-    res.json({
+    return res.status(200).json({
       loggedIn: true,
       user: {
         name: req.session.user.name,
@@ -215,9 +210,10 @@ app.get('/session', (req, res) => {
     });
   } else {
     console.log("[Session] Nenhuma sessão ativa");
-    res.json({ loggedIn: false });
+    return res.status(200).json({ loggedIn: false });
   }
-});;
+});
+
 
 app.post('/logout', (req, res) => {
   console.log("[Logout] Pedido de logout recebido");
